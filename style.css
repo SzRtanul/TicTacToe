@@ -1,0 +1,21 @@
+.negyzet{
+    width: 52px;
+    height: 52px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+    margin: 0;
+}
+.borda{
+    border: 1px solid black;
+}
+.fekete{
+    background-color: gray;
+}
+.feher{
+    background-color: white;
+}
+
+td.negyzet:hover{
+    background-color: rgba(145, 145, 145, 0.562);
+}
