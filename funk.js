@@ -29,7 +29,7 @@ function Teszt(){
                 // mem[2] = table[i][j][0];
                 table[i][j][0] = 3;
             } catch (error) {
-                
+                 
             }
             try {
                // lenni[3] = mem[3] != 0 && table[i][table.length+maxTableRowLength(table)-1 - j][0] == mem[3] ?
@@ -67,7 +67,7 @@ function lep(mezoX, mezoY){
         table[mezoX][mezoY][0] = kijon;
         JatekosLepett();
         megjelenit();
-        document.getElementsByClassName("kinyert")[0].innerHTML = vizsgal() ? "Valaki" : "Senki";
+        document.getElementsByClassName("kinyert")[0].innerHTML = vizsgal() ? `${kijon}. Játékos` : "Senki";
     }
 }
 

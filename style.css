@@ -1,5 +1,8 @@
+body{
+    height: 100%;
+}
 .negyzet{
-    width: 52px;
+    min-width: 52px;
     height: 52px;
     text-align: center;
     vertical-align: middle;
@@ -18,4 +21,13 @@
 
 td.negyzet:hover{
     background-color: rgba(145, 145, 145, 0.562);
+}
+
+/* Flex és minden más */
+.flex-container{
+    display: flex;
+    height: 100vh;
+}
+.main{
+    margin: auto;
 }
