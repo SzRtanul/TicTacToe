@@ -3,11 +3,12 @@ const babuk = ["", "X", "O", "F", "H"]
 let kijon = 1;
 let jatekosokszama = 2;
 let nyert = 0;
+let meddigjatszuk = 3;
 
 // Tábla feltöltése
-for(let i = 0; i < 3; i++){
+for(let i = 0; i < 9; i++){
     table.push([])
-    for(let j = 0; j < 3; j++){
+    for(let j = 0; j < 9; j++){
         table[i].push([])
         for(let k = 0; k < 3; k++){
             table[i][j].push(0);
@@ -57,11 +58,11 @@ function lep(mezoX, mezoY){
     //console.log(event.target);
     //event.target.innerHTML = "X";
     if(table[mezoX][mezoY][0] == 0){
-        console.log()
         table[mezoX][mezoY][0] = kijon;
         JatekosLepett();
         megjelenit();
-        document.getElementsByClassName("kinyert")[0].innerHTML = vizsgal() ? `${kijon}. Játékos` : "Senki";
+        nyert = vizsgal();
+        document.getElementsByClassName("kinyert")[0].innerHTML = nyert =! 0 ? `${nyert}. Játékos` : "Senki";
     }
 }
 
@@ -86,22 +87,26 @@ function keresUres(){
 function vizsgal(){
     let vege = false;
     let lenni = [0, 0, 0, 0];
-    let mem = [0, 0, 0, 0]
+    let mem = [0, 0, 0, 0];
+    let kinyertvalojaban = 0;
     // KeresztX
     // KeresztY
     for(let i = 0; i < table.length && !vege; i++){
+        mem = [0, 0, 0, 0];
         for(let j = 0; j < table[i].length && !vege; j++){
             lenni[0] = mem[0] != 0 && table[i][j][0] == mem[0] ? lenni[0] + 1 : table[i][j][0] > 0 ? 1 : 0;
             lenni[1] = mem[1] != 0 && table[j][i][0] == mem[1] ? lenni[1] + 1 : table[j][i][0] > 0 ? 1 : 0;
             mem[0] = table[i][j][0];
             mem[1] = table[j][i][0];
+            console.log(lenni, mem)
             vege = tobbmint3(lenni);
-            console.log(`i: ${i}\nj: ${j}\nLenni[0]: ${lenni[0]}\nLenni[1]: ${lenni[1]}\n`);
+            kinyertvalojaban = nyertvalaki(lenni, mem);
         }
-        mem = [0, 0, 0, 0];
     }
     // ÁtlóVizsgálat
+    vege = false;
     for(let g = 0; g < (table.length + maxTableRowLength(table)) && !vege; g++){
+        mem = [0, 0, 0, 0];
         for(let i = 0, j = 1 - table.length + g; i < table.length + g && !vege; i++ , j++){
             try {
                  lenni[2] = mem[2] != 0 && table[i][j][0] == mem[2] ? 
@@ -120,18 +125,28 @@ function vizsgal(){
                 
             }
             vege = tobbmint3(lenni);
+            kinyertvalojaban = nyertvalaki(lenni, mem);
         }
-        mem = [0, 0, 0, 0];
     }
-    return vege;
+    return kinyertvalojaban;
 }
 
 function tobbmint3(lenni){
     let van = false;
     for(let i = 0; i < lenni.length && !van; i++){
-        van = lenni[i] >= 3;
+        van = lenni[i] >= meddigjatszuk;
     }
     return van; 
+}
+
+function nyertvalaki(lenni, mem){
+    let van = false;
+    let kinyertvalojaban = 0;
+    for(let i = 0; i < lenni.length && !van; i++){
+        kinyertvalojaban = lenni[i] >= meddigjatszuk ? mem[i] : 0;
+        van = true;
+    }
+    return kinyertvalojaban;
 }
 
 function maxTableRowLength(matrix){
