@@ -24,17 +24,11 @@ function Teszt(){
      for(let g = 0; g < (table.length + maxTableRowLength(table)) && !vege; g++){
         for(let i = 0, j = 1 - table.length + g; i < table.length + g && !vege; i++ , j++){
             try {
-                // lenni[2] = mem[2] != 0 && table[i][j][0] == mem[2] ? 
-                //    lenni[2] + 1 : table[i][j][0] > 0 ? 1 : 0; // Főátló
-                // mem[2] = table[i][j][0];
                 table[i][j][0] = 3;
             } catch (error) {
                  
             }
             try {
-               // lenni[3] = mem[3] != 0 && table[i][table.length+maxTableRowLength(table)-1 - j][0] == mem[3] ?
-               //     lenni[3] + 1 : table[i][table.length+maxTableRowLength(table) - 1 - j][0] > 0 ? 1 : 0; // Mellékátló
-               // mem[3] = table[i][table.length+maxTableRowLength(table) - 1 - j][0];
                // table[i][maxTableRowLength(table) - j][0] = 4;
             } catch (error) {
                 
