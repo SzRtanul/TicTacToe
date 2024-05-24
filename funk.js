@@ -104,7 +104,6 @@ function vizsgal(){
         }
     }
     // ÁtlóVizsgálat
-    vege = false;
     for(let g = 0; g < (table.length + maxTableRowLength(table)) && !vege; g++){
         mem = [0, 0, 0, 0];
         for(let i = 0, j = 1 - table.length + g; i < table.length + g && !vege; i++ , j++){
@@ -122,7 +121,7 @@ function vizsgal(){
                 mem[3] = table[i][maxTableRowLength(table) - j][0];
                // table[i][maxTableRowLength(table) - j][0] = 4;
             } catch (error) {
-                
+                console.log("Ezt beszoptam.")
             }
             vege = tobbmint3(lenni);
             kinyertvalojaban = nyertvalaki(lenni, mem);
