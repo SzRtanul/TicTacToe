@@ -5,7 +5,6 @@ let jatekosokszama = 2;
 let nyert = 0;
 let meddigjatszuk = 3;
 
-
 // Tábla feltöltése
 for(let i = 0; i < 3; i++){
     table.push([])
@@ -58,13 +57,14 @@ function megjelenit(){
 function lep(mezoX, mezoY){
     //console.log(event.target);
     //event.target.innerHTML = "X";
-    if(table[mezoX][mezoY][0] == 0){
+    if(table[mezoX][mezoY][0] == 0 && nyert==0){
         console.log()
         table[mezoX][mezoY][0] = kijon;
-        document.getElementsByClassName("kinyert")[0].innerHTML = vizsgal() ? `${kijon}. Játékos` : "Senki";
+        let vege = vizsgal();
+        nyert = vege && nyert == 0 ? kijon : nyert;
+        document.getElementsByClassName("kinyert")[0].innerHTML = vege && nyert!=0 ? `${kijon}. Játékos` : "Senki";
         JatekosLepett();
         megjelenit();
-        
     }
 }
 
@@ -73,7 +73,6 @@ function JatekosLepett(){
     if(kijon == 2){ // Gép lép
         let arr = keresUres();
         lep(arr[0], arr[1]);
-        document.getElementsByClassName("kinyert")[0].innerHTML = vizsgal() ? `${kijon}. Játékos` : "Senki";
         kijon = 1;
     }
 }
