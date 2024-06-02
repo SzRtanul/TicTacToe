@@ -3,6 +3,7 @@ const babuk = ["", "X", "O", "F", "H"]
 let kijon = 1;
 let jatekosokszama = 2;
 let nyert = 0;
+let meddigjatszuk = 3;
 
 // Tábla feltöltése
 for(let i = 0; i < 3; i++){
