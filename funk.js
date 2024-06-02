@@ -59,9 +59,10 @@ function lep(mezoX, mezoY){
     if(table[mezoX][mezoY][0] == 0){
         console.log()
         table[mezoX][mezoY][0] = kijon;
+        document.getElementsByClassName("kinyert")[0].innerHTML = vizsgal() ? `${kijon}. Játékos` : "Senki";
         JatekosLepett();
         megjelenit();
-        document.getElementsByClassName("kinyert")[0].innerHTML = vizsgal() ? `${kijon}. Játékos` : "Senki";
+        
     }
 }
 
@@ -70,6 +71,7 @@ function JatekosLepett(){
     if(kijon == 2){ // Gép lép
         let arr = keresUres();
         lep(arr[0], arr[1]);
+        document.getElementsByClassName("kinyert")[0].innerHTML = vizsgal() ? `${kijon}. Játékos` : "Senki";
         kijon = 1;
     }
 }
@@ -140,4 +142,8 @@ function maxTableRowLength(matrix){
         maxValue = maxValue < matrix[i].length ? matrix[i].length : maxValue;
     }
     return maxValue;
+}
+
+function hattyuhalal(jatekosszam){
+
 }
