@@ -5,6 +5,7 @@ let jatekosokszama = 2;
 let nyert = 0;
 let meddigjatszuk = 3;
 
+
 // Tábla feltöltése
 for(let i = 0; i < 3; i++){
     table.push([])
